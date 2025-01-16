@@ -158,6 +158,7 @@ char read_keypad() {
     for (int col = 0; col < 4; col++) {
         gpio_set_dir(columns[col], GPIO_OUT);
         gpio_put(columns[col], 0); // Ativa a coluna
+        sleep_ms(1); // Aumenta o tempo de estabilização
         for (int row = 0; row < 4; row++) {
             gpio_set_dir(rows[row], GPIO_IN);
             gpio_pull_up(rows[row]);
