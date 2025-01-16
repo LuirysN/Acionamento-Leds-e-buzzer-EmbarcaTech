@@ -163,6 +163,7 @@ char read_keypad() {
             gpio_set_dir(rows[row], GPIO_IN);
             gpio_pull_up(rows[row]); // Habilita o pull-up
             if (gpio_get(rows[row]) == 0) { // Detecta se a linha está baixa
+                while (gpio_get(rows[row]) == 0) sleep_ms(50); // Espera a tecla ser liberada
                 gpio_set_dir(columns[col], GPIO_IN);
                 return KEY_MAP[row][col];
             }
