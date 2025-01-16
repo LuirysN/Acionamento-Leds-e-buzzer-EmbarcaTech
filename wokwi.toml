@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = 'build/leds_e_buzzer.uf2'
+elf = 'build/leds_e_buzzer.elf'
+gdbServerPort=3333
