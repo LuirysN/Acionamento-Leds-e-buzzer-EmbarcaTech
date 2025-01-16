@@ -161,8 +161,8 @@ char read_keypad() {
         sleep_ms(1); // Aumenta o tempo de estabilização
         for (int row = 0; row < 4; row++) {
             gpio_set_dir(rows[row], GPIO_IN);
-            gpio_pull_up(rows[row]);
-            if (gpio_get(rows[row]) == 0) {
+            gpio_pull_up(rows[row]); // Habilita o pull-up
+            if (gpio_get(rows[row]) == 0) { // Detecta se a linha está baixa
                 gpio_set_dir(columns[col], GPIO_IN);
                 return KEY_MAP[row][col];
             }
