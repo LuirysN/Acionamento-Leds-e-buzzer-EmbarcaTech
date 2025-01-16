@@ -17,6 +17,20 @@ const char KEY_MAP[4][4] = {
     {'*', '0', '#', 'D'}
 };
 
+// Função para configurar os GPIOs dos LEDs RGB
+void config_gpio_rgb_leds() {
+    gpio_init(GPIO_LED_R);
+    gpio_set_dir(GPIO_LED_R, GPIO_OUT);
+    gpio_init(GPIO_LED_G);
+    gpio_set_dir(GPIO_LED_G, GPIO_OUT);
+    gpio_init(GPIO_LED_B);
+    gpio_set_dir(GPIO_LED_B, GPIO_OUT);
+
+    gpio_put(GPIO_LED_R, 0);
+    gpio_put(GPIO_LED_G, 0);
+    gpio_put(GPIO_LED_B, 0);
+}
+
 void gpio_put_rgb(bool r, bool g, bool b) {
     gpio_put(GPIO_LED_R, r);
     gpio_put(GPIO_LED_G, g);
