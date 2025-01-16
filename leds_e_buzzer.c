@@ -157,7 +157,7 @@ void handle_key_press(char key) {
 char read_keypad() {
     for (int col = 0; col < 4; col++) {
         gpio_set_dir(columns[col], GPIO_OUT);
-        gpio_put(columns[col], 0);
+        gpio_put(columns[col], 0); // Ativa a coluna
         for (int row = 0; row < 4; row++) {
             gpio_set_dir(rows[row], GPIO_IN);
             gpio_pull_up(rows[row]);
