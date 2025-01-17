@@ -17,6 +17,20 @@ const char KEY_MAP[4][4] = {
     {'*', '0', '#', 'D'}
 };
 
+// Função para configurar os GPIOs dos LEDs RGB
+void config_gpio_rgb_leds() {
+    gpio_init(GPIO_LED_R);
+    gpio_set_dir(GPIO_LED_R, GPIO_OUT);
+    gpio_init(GPIO_LED_G);
+    gpio_set_dir(GPIO_LED_G, GPIO_OUT);
+    gpio_init(GPIO_LED_B);
+    gpio_set_dir(GPIO_LED_B, GPIO_OUT);
+
+    gpio_put(GPIO_LED_R, 0);
+    gpio_put(GPIO_LED_G, 0);
+    gpio_put(GPIO_LED_B, 0);
+}
+
 void gpio_put_rgb(bool r, bool g, bool b) {
     gpio_put(GPIO_LED_R, r);
     gpio_put(GPIO_LED_G, g);
@@ -143,18 +157,20 @@ void handle_key_press(char key) {
 char read_keypad() {
     for (int col = 0; col < 4; col++) {
         gpio_set_dir(columns[col], GPIO_OUT);
-        gpio_put(columns[col], 0);
+        gpio_put(columns[col], 0); // Ativa a coluna
+        sleep_ms(1); // Aumenta o tempo de estabilização
         for (int row = 0; row < 4; row++) {
             gpio_set_dir(rows[row], GPIO_IN);
-            gpio_pull_up(rows[row]);
-            if (gpio_get(rows[row]) == 0) {
-                gpio_set_dir(columns[col], GPIO_IN);
-                return KEY_MAP[row][col];
+            gpio_pull_up(rows[row]); // Habilita o pull-up
+            if (gpio_get(rows[row]) == 0) { // Detecta se a linha está baixa
+                while (gpio_get(rows[row]) == 0) sleep_ms(50); // Espera a tecla ser liberada
+                gpio_set_dir(columns[col], GPIO_IN); // Retorna a coluna para entrada
+                return KEY_MAP[row][col]; // Retorna a tecla pressionada
             }
         }
-        gpio_set_dir(columns[col], GPIO_IN);
+        gpio_set_dir(columns[col], GPIO_IN); // Retorna a coluna para entrada
     }
-    return '\0';
+    return '\0'; // Nenhuma tecla pressionada
 }
 
 // Função Principal
@@ -166,17 +182,11 @@ int main() {
         gpio_init(rows[i]);
     }
 
-    gpio_init(GPIO_LED_R);
-    gpio_set_dir(GPIO_LED_R, GPIO_OUT);
-    gpio_init(GPIO_LED_G);
-    gpio_set_dir(GPIO_LED_G, GPIO_OUT);
-    gpio_init(GPIO_LED_B);
-    gpio_set_dir(GPIO_LED_B, GPIO_OUT);
-    gpio_init(BUZZER_PIN);
-    gpio_set_dir(BUZZER_PIN, GPIO_OUT);
+    // Configura os GPIOs para os LEDs RGB
+    config_gpio_rgb_leds();
 
-    gpio_put_rgb(0, 0, 0); 
-    buzzer_off(); 
+    gpio_init(BUZZER_PIN);
+    gpio_set_dir(BUZZER_PIN, GPIO_OUT); 
 
     char caracter_press;
 
