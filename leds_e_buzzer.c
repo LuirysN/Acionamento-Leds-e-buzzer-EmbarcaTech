@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -25,7 +24,7 @@ void config_gpio_rgb_leds() {
     gpio_set_dir(GPIO_LED_G, GPIO_OUT);
     gpio_init(GPIO_LED_B);
     gpio_set_dir(GPIO_LED_B, GPIO_OUT);
-
+   
     gpio_put(GPIO_LED_R, 0);
     gpio_put(GPIO_LED_G, 0);
     gpio_put(GPIO_LED_B, 0);
@@ -88,16 +87,26 @@ void play_buzzer_pattern(char key) {
 void handle_key_press(char key) {
     switch (key) {
         case '1':
-            gpio_put_rgb(1, 0, 0);
+            gpio_put_rgb(1, 0, 0);  
+            sleep_ms(5000);
+            gpio_put_rgb(0, 0, 0); 
+            sleep_ms(100);
+//nos casos 1-2-3 foi adicionado t=5s p/ desligamento
             break;
         case '2':
             gpio_put_rgb(0, 1, 0); 
+            sleep_ms(5000);
+            gpio_put_rgb(0, 0, 0); 
+            sleep_ms(100);
             break;
         case '3':
             gpio_put_rgb(0, 0, 1);
+            sleep_ms(5000);
+            gpio_put_rgb(0, 0, 0); 
+            sleep_ms(100);            
             break;
         case '4':
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 4; i++) {
                 gpio_put(GPIO_LED_R, 1); 
                 sleep_ms(500);
                 gpio_put(GPIO_LED_R, 0); 
@@ -105,7 +114,7 @@ void handle_key_press(char key) {
             }
             break;
         case '5':
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 5; i++) {
                 gpio_put(GPIO_LED_G, 1); 
                 sleep_ms(500);
                 gpio_put(GPIO_LED_G, 0); 
@@ -113,7 +122,7 @@ void handle_key_press(char key) {
             }
             break;
         case '6':
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 6; i++) {
                 gpio_put(GPIO_LED_B, 1); 
                 sleep_ms(500);
                 gpio_put(GPIO_LED_B, 0);
@@ -121,7 +130,7 @@ void handle_key_press(char key) {
             }
             break;
         case '7':
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 7; i++) {
                 gpio_put_rgb(1, 1, 1); 
                 sleep_ms(500);
                 gpio_put_rgb(0, 0, 0); 
@@ -129,19 +138,19 @@ void handle_key_press(char key) {
             }
             break;
         case '8':
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 8; i++) {
                 gpio_put_rgb(1, 1, 1); 
-                sleep_ms(250);
+                sleep_ms(500);
                 gpio_put_rgb(0, 0, 0); 
-                sleep_ms(250);
-            }
-            break;
-        case '9':
-            for (int i = 0; i < 10; i++) {
+                sleep_ms(500);
+            }        //nos casos 4~9 foi alterada a quantidade
+            break;  //de iterações 'for' para cada combinação
+        case '9':  //'piscar' == número da tecla acionada
+            for (int i = 0; i < 9; i++) {
                 gpio_put_rgb(1, 1, 1);
-                sleep_ms(5);
+                sleep_ms(500);
                 gpio_put_rgb(0, 0, 0); 
-                sleep_ms(5);
+                sleep_ms(500);
             }
             break;
         case '0':
@@ -198,4 +207,3 @@ int main() {
         }
         sleep_ms(100); 
     }
-}
