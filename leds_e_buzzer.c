@@ -182,17 +182,11 @@ int main() {
         gpio_init(rows[i]);
     }
 
-    gpio_init(GPIO_LED_R);
-    gpio_set_dir(GPIO_LED_R, GPIO_OUT);
-    gpio_init(GPIO_LED_G);
-    gpio_set_dir(GPIO_LED_G, GPIO_OUT);
-    gpio_init(GPIO_LED_B);
-    gpio_set_dir(GPIO_LED_B, GPIO_OUT);
-    gpio_init(BUZZER_PIN);
-    gpio_set_dir(BUZZER_PIN, GPIO_OUT);
+    // Configura os GPIOs para os LEDs RGB
+    config_gpio_rgb_leds();
 
-    gpio_put_rgb(0, 0, 0); 
-    buzzer_off(); 
+    gpio_init(BUZZER_PIN);
+    gpio_set_dir(BUZZER_PIN, GPIO_OUT); 
 
     char caracter_press;
 
