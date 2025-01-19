@@ -86,6 +86,19 @@ void play_buzzer_pattern(char key) {
             break;
     }
 }
+
+//Implementando controle dos leds com temporizador
+void timer_based_led_control(){
+    int i;
+
+    for(i = 0; i < 3; i++){
+        gpio_put_rgb(1, 1, 1);
+        sleep_ms(1000);
+        gpio_put_rgb(0, 0, 0);
+        sleep_ms(1000);
+    }
+}
+
 // Função para tratar a tecla pressionada
 void handle_key_press(char key) {
     switch (key) {
