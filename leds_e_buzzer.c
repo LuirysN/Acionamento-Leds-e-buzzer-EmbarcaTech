@@ -53,32 +53,32 @@ void buzzer_off() {
 // Função para tocar um padrão de som no buzzer
 void play_buzzer_pattern(char key) {
     switch (key) {
-        case 'A':
-            buzzer_on();
-            sleep_ms(200);
+        case 'A': //caso A, aciona temporizador
+            buzzer_on(); //liga o buzzer
+            sleep_ms(200); //espera 200ms
             buzzer_off();
             sleep_ms(200);
             buzzer_on();
             sleep_ms(200);
             buzzer_off();
             break;
-        case 'B':
-            buzzer_on();
-            sleep_ms(500);
+        case 'B': //caso B, aciona temporizador
+            buzzer_on(); //liga o buzzer
+            sleep_ms(500); //espera 500ms
             buzzer_off();
             break;
-        case 'C':
-            buzzer_on();
-            sleep_ms(100);
+        case 'C': //caso C, aciona temporizador
+            buzzer_on(); //liga o buzzer
+            sleep_ms(100); //espera 100ms
             buzzer_off();
             sleep_ms(100);
             buzzer_on();
             sleep_ms(100);
             buzzer_off();
             break;
-        case 'D':
+        case 'D': //caso D, aciona temporizador
             buzzer_on();
-            sleep_ms(300);
+            sleep_ms(300); //espera 300ms
             buzzer_off();
             sleep_ms(300);
             buzzer_on();
@@ -95,10 +95,10 @@ void timer_based_led_control(){
     int i;
 
     for(i = 0; i < 3; i++){ //fazer com que o led pisque 3x
-        gpio_put_rgb(1, 1, 1);
-        sleep_ms(1000);
-        gpio_put_rgb(0, 0, 0);
-        sleep_ms(1000);
+        gpio_put_rgb(1, 1, 1); //liga os leds
+        sleep_ms(1000); //espera 1s
+        gpio_put_rgb(0, 0, 0); //desliga os leds
+        sleep_ms(1000); //espera 1s
     }
 }
 
@@ -107,24 +107,24 @@ void custom_sound_pattern(){
     int i;
 
     for(i = 0; i < 4; i++){
-        buzzer_on();
-        sleep_ms(250);
-        buzzer_off();
-        sleep_ms(250);
+        buzzer_on(); //liga o buzzer
+        sleep_ms(250); //espera 250ms
+        buzzer_off(); //desliga o buzzer
+        sleep_ms(250); //espera 250ms
     }
 }
 
 // Função para tratar a tecla pressionada
 void handle_key_press(char key) {
     switch (key) {
-        case '1':
+        case '1': //caso 1, aciona temporizador
             gpio_put_rgb(1, 0, 0);  
             sleep_ms(5000);
             gpio_put_rgb(0, 0, 0); 
             sleep_ms(100);
 //nos casos 1-2-3 foi adicionado t=5s p/ desligamento
             break;
-        case '2':
+        case '2': //caso 2, aciona temporizador
             gpio_put_rgb(0, 1, 0); 
             sleep_ms(5000);
             gpio_put_rgb(0, 0, 0); 
@@ -136,7 +136,7 @@ void handle_key_press(char key) {
             gpio_put_rgb(0, 0, 0); 
             sleep_ms(100);            
             break;
-        case '4':
+        case '4': //caso 4, aciona temporizador
             for (int i = 0; i < 4; i++) {
                 gpio_put(GPIO_LED_R, 1); 
                 sleep_ms(500);
@@ -144,7 +144,7 @@ void handle_key_press(char key) {
                 sleep_ms(500);
             }
             break;
-        case '5':
+        case '5': //caso 5, aciona temporizador
             for (int i = 0; i < 5; i++) {
                 gpio_put(GPIO_LED_G, 1); 
                 sleep_ms(500);
@@ -152,7 +152,7 @@ void handle_key_press(char key) {
                 sleep_ms(500);
             }
             break;
-        case '6':
+        case '6': //caso 6, aciona temporizador
             for (int i = 0; i < 6; i++) {
                 gpio_put(GPIO_LED_B, 1); 
                 sleep_ms(500);
@@ -160,23 +160,23 @@ void handle_key_press(char key) {
                 sleep_ms(500);
             }
             break;
-        case '7':
-            for (int i = 0; i < 7; i++) {
+        case '7': //caso 7, aciona temporizador                          
+            for (int i = 0; i < 7; i++) {   //nos casos 4~9 foi alterada a quantidade
                 gpio_put_rgb(1, 1, 1); 
                 sleep_ms(500);
                 gpio_put_rgb(0, 0, 0); 
                 sleep_ms(500);
             }
             break;
-        case '8':
+        case '8':  //caso 8, aciona temporizador                             
             for (int i = 0; i < 8; i++) {
-                gpio_put_rgb(1, 1, 1); 
+                gpio_put_rgb(1, 1, 1);      //nos casos 7~9 foi alterada a quantidade
                 sleep_ms(500);
                 gpio_put_rgb(0, 0, 0); 
                 sleep_ms(500);
             }        //nos casos 4~9 foi alterada a quantidade
             break;  //de iterações 'for' para cada combinação
-        case '9':  //'piscar' == número da tecla acionada
+        case '9':  //'piscar' == número da tecla acionada  
             for (int i = 0; i < 9; i++) {
                 gpio_put_rgb(1, 1, 1);
                 sleep_ms(500);
@@ -184,14 +184,14 @@ void handle_key_press(char key) {
                 sleep_ms(500);
             }
             break;
-        case '*':
+        case '*':                   //caso *, aciona temporizador
             gpio_put_rgb(1,1,1);
             buzzer_on();
             sleep_ms(1000);
             gpio_put_rgb(0,0,0);
             buzzer_off();
             break;
-        case '0':
+        case '0':                   //caso 0, aciona temporizador
             gpio_put_rgb(0, 0, 0); 
             buzzer_off();
             break;
@@ -222,11 +222,11 @@ char read_keypad() {
 
 // Função Principal
 int main() {
-    stdio_init_all();
+    stdio_init_all();           // Inicializa a comunicação serial
 
-    for (int i = 0; i < 4; i++) {
-        gpio_init(columns[i]);
-        gpio_init(rows[i]);
+    for (int i = 0; i < 4; i++) { // Inicializa os GPIOs do teclado matricial
+        gpio_init(columns[i]);   // Inicializa as colunas
+        gpio_init(rows[i]);     // Inicializa as linhas
     }
 
     // Configura os GPIOs para os LEDs RGB
