@@ -3,13 +3,15 @@
 Este projeto implementa o controle de LEDs RGB e um buzzer utilizando um teclado matricial 4x4 em um microcontrolador Raspberry Pi Pico W. A interação ocorre por meio de teclas pressionadas no teclado, que controlam os LEDs e produzem sons no buzzer.
 
 ## EQUIPE
-Líder: LUIRYS DO NASCIMENTO SILVA.
-Desenvolvedores:
-CAMILLA MATOS ARAUJO;
-FREDSON PEREIRA DE OLIVEIRA SANTOS;
-JACKSON DA SILVA CARNEIRO;
-LUIZ FILIPE RIBEIRO DE JESUS;
-VITOR SOARES NASCIMENTO LEAL.
+
+- **Líder:** 
+  - LUIRYS DO NASCIMENTO SILVA.
+- **Desenvolvedores:**
+  - CAMILLA MATOS ARAUJO;
+  - FREDSON PEREIRA DE OLIVEIRA SANTOS;
+  - JACKSON DA SILVA CARNEIRO;
+  - LUIZ FILIPE RIBEIRO DE JESUS;
+  - VITOR SOARES NASCIMENTO LEAL.
 
 ## Descrição
 
@@ -34,3 +36,7 @@ VITOR SOARES NASCIMENTO LEAL.
 ## Uso
 - Pressione as teclas do teclado matricial para controlar os LEDs e o buzzer.
 - Cada tecla mapeada executa uma ação diferente, como mudar a cor dos LEDs ou tocar um padrão de som.
+
+## Link do Vídeo do Projeto
+
+https://drive.google.com/file/d/1n127DkAvzxTnskmljt0AaVRy1dnv_67c/view?usp=drive_link
