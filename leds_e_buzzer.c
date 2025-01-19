@@ -12,9 +12,10 @@
 #define BUZZER_PIN 15
 #define FREQUENCIA 500  //define a frequencia do buzzer=500Hz
 
-const uint8_t columns[] = {6, 7, 8, 9};
-const uint8_t rows[] = {10, 11, 12, 13};
-const char KEY_MAP[4][4] = {
+// Matriz de teclas do teclado matricial
+const uint8_t columns[] = {6, 7, 8, 9}; //definição das colunas
+const uint8_t rows[] = {10, 11, 12, 13}; //definição das linhas
+const char KEY_MAP[4][4] = {    //definição da matriz de teclas
     {'1', '2', '3', 'A'},
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
@@ -199,7 +200,7 @@ void handle_key_press(char key) {
             break;
     }
 }
-
+// Função para ler a tecla pressionada
 char read_keypad() {
     for (int col = 0; col < 4; col++) {
         gpio_set_dir(columns[col], GPIO_OUT);
@@ -234,6 +235,7 @@ int main() {
     gpio_init(BUZZER_PIN);
     gpio_set_dir(BUZZER_PIN, GPIO_OUT); 
 
+    // Loop infinito para leitura das teclas
     char caracter_press;
 
     while (true) {
