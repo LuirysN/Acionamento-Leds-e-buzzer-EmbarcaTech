@@ -93,7 +93,7 @@ void play_buzzer_pattern(char key) {
 void timer_based_led_control(){
     int i;
 
-    for(i = 0; i < 3; i++){
+    for(i = 0; i < 3; i++){ //fazer com que o led pisque 3x
         gpio_put_rgb(1, 1, 1);
         sleep_ms(1000);
         gpio_put_rgb(0, 0, 0);
