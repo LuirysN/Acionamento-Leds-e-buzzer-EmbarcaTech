@@ -101,6 +101,18 @@ void timer_based_led_control(){
     }
 }
 
+//configurar um padrão de som para algumas teclas
+void custom_sound_pattern(){
+    int i;
+
+    for(i = 0; i < 4; i++){
+        buzzer_on();
+        sleep_ms(250);
+        buzzer_off();
+        sleep_ms(250);
+    }
+}
+
 // Função para tratar a tecla pressionada
 void handle_key_press(char key) {
     switch (key) {
