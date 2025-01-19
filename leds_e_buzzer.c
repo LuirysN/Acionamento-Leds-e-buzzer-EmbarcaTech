@@ -1,3 +1,6 @@
+//Programa para acionar leds e buzzer na placa BitDogLab
+//SUBGRUPO 7
+
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
