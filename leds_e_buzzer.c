@@ -183,6 +183,13 @@ void handle_key_press(char key) {
                 sleep_ms(500);
             }
             break;
+        case '*':
+            gpio_put_rgb(1,1,1);
+            buzzer_on();
+            sleep_ms(1000);
+            gpio_put_rgb(0,0,0);
+            buzzer_off();
+            break;
         case '0':
             gpio_put_rgb(0, 0, 0); 
             buzzer_off();
