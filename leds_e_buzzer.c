@@ -2,13 +2,15 @@
 //SUBGRUPO 7
 
 #include <stdio.h>
-#include "pico/stdlib.h"
-#include "hardware/gpio.h"
+#include "pico/stdlib.h"     //biblioteca PICO
+#include "hardware/gpio.h"  //biblioteca GPIO
+#include "hardware/pwm.h"  //biblioteca PWM
 
 #define GPIO_LED_R 16
 #define GPIO_LED_G 17
 #define GPIO_LED_B 18
 #define BUZZER_PIN 15
+#define FREQUENCIA 500  //define a frequencia do buzzer=500Hz
 
 const uint8_t columns[] = {6, 7, 8, 9};
 const uint8_t rows[] = {10, 11, 12, 13};
@@ -33,10 +35,10 @@ void config_gpio_rgb_leds() {
     gpio_put(GPIO_LED_B, 0);
 }
 
-void gpio_put_rgb(bool r, bool g, bool b) {
-    gpio_put(GPIO_LED_R, r);
-    gpio_put(GPIO_LED_G, g);
-    gpio_put(GPIO_LED_B, b);
+void gpio_put_rgb(bool r, bool g, bool b) { //função que liga/desliga os leds
+    gpio_put(GPIO_LED_R, r);               //liga/desliga led vermelho
+    gpio_put(GPIO_LED_G, g);              //liga/desliga led verde
+    gpio_put(GPIO_LED_B, b);             //liga/desliga led azul
 }
 
 // Função para ligar o buzzer
